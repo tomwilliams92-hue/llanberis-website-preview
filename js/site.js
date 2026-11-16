@@ -91,6 +91,13 @@ if (bform) {
     row.querySelector('input[name$="[height]"]').required = !['trailer', 'tagalong'].includes(bike);
   };
   list.addEventListener('change', e => { if (e.target.matches('select')) heightRule(e.target.closest('.rider')); });
+  // From the bike finder (book.html?bike=fullsus): that bike for the first rider, if it's one on the list
+  const picked = new URLSearchParams(location.search).get('bike');
+  const firstBike = first.querySelector('select');
+  if (picked && [...firstBike.options].some(o => o.value && o.value === picked)) {
+    firstBike.value = picked;
+    heightRule(first);
+  }
   list.addEventListener('click', e => {
     if (e.target.matches('.remove')) { e.target.closest('.rider').remove(); renumber(); }
   });
@@ -110,4 +117,61 @@ if (bform) {
   if (location.protocol === 'file:' || location.hostname.endsWith('github.io')) {
     bform.addEventListener('submit', e => { e.preventDefault(); bform.classList.add('local-file'); });
   }
+}
+
+// Bike finder (which-bike.html): one or two bikes for the answers, best first.
+// Children's bikes, trailers, road bikes and e-bikes go by the answers. The hardtail and full-suspension bikes are
+// ranked on the numbers behind the bars on their pages (build.py reads them from there into data-stats), so Nigel
+// only sets those in one place. qa.py checks the suggestions stay safe whatever those numbers are.
+function suggestBikes(who, where, rider, help, stats) {
+  if (who === 'child') return ['kids'];
+  if (who === 'little') return ['trailer', 'tagalong'];
+  const ebike = where === 'trails' || where === 'snowdon' ? 'emtb' : 'stepthrough';
+  if (where === 'roads') return help ? ['road', ebike] : ['road'];
+  // what this rider needs, on the same 0 to 100 scales as the bars
+  const want = {experience: {new: 20, paths: 45, offroad: 70, expert: 90}[rider],
+                terrain: {lake: 35, trails: 75, snowdon: 95}[where], downhill: {lake: 30, trails: 70, snowdon: 95}[where]};
+  const gap = bike => Object.keys(want).reduce((sum, k) => sum + Math.abs(stats[bike][k] - want[k]), 0);
+  // Snowdon is rocky all the way down, so never a hardtail there
+  const ranked = (where === 'snowdon' ? ['fullsus'] : ['hardtail', 'fullsus']).sort((a, b) => gap(a) - gap(b));
+  // asked for help on the hills: the e-bike first, then the best one to pedal yourself
+  if (help) return [ebike, ranked[0]];
+  // otherwise a second bike only when it's a close call
+  return ranked.filter(bike => gap(bike) - gap(ranked[0]) <= 25);
+}
+
+const finder = document.querySelector('.finder');
+if (finder) {
+  const stats = JSON.parse(finder.dataset.stats);
+  const out = document.querySelector('.fb-out');
+  const list = out.querySelector('.fb-list');
+  const answer = name => (finder.querySelector(`input[name=${name}]:checked`) || {}).value;
+  const show = () => {
+    const who = answer('who');
+    const picks = suggestBikes(who, answer('where'), answer('rider'), answer('help') === 'yes', stats);
+    list.querySelectorAll('.fb-card').forEach(c => { c.hidden = !picks.includes(c.dataset.bike); });
+    picks.forEach((bike, i) => {
+      const card = list.querySelector(`[data-bike="${bike}"]`);
+      const rank = card.querySelector('.fb-rank');
+      rank.textContent = i ? 'Also a good choice' : 'Our first choice';
+      rank.hidden = picks.length < 2;
+      list.insertBefore(card, list.children[i]);  // the picks first, in order
+    });
+    out.querySelector('.fb-snowdon').hidden = !(who === 'adult' && answer('where') === 'snowdon');
+    out.querySelector('.fb-grownups').hidden = who === 'adult';
+    out.hidden = false;
+  };
+  finder.addEventListener('change', () => {
+    // a child or a little one only needs the first question (disabled questions don't have to be answered)
+    finder.querySelectorAll('.adult-only').forEach(f => { f.hidden = f.disabled = ['child', 'little'].includes(answer('who')); });
+    // once the suggestion is showing, it follows any change of answer
+    if (!out.hidden) {
+      if (finder.checkValidity()) show(); else out.hidden = true;
+    }
+  });
+  finder.addEventListener('submit', e => {
+    e.preventDefault();
+    show();
+    out.querySelector('h2').focus();
+  });
 }

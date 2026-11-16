@@ -383,8 +383,8 @@ ul.good li{margin-bottom:8px}
 .bookpage .steps{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0}
 .bookpage .steps span{background:var(--pale);color:var(--ink);font-weight:600;font-size:15px;border-radius:20px;padding:7px 14px}
 .bform{max-width:860px;margin:30px 0 0;display:flex;flex-direction:column;gap:18px}
-.bform fieldset{border:0;margin:0;background:var(--pale);border-radius:var(--r);padding:22px 24px}
-.bform legend{float:left;width:100%;font-size:21px;font-weight:600;color:var(--ink);margin:0 0 12px;padding:0}
+.bform fieldset,.finder fieldset{border:0;margin:0;background:var(--pale);border-radius:var(--r);padding:22px 24px}
+.bform legend,.finder legend{float:left;width:100%;font-size:21px;font-weight:600;color:var(--ink);margin:0 0 12px;padding:0}
 .bform .help{clear:both;margin:0 0 14px;color:var(--muted);font-size:16px}
 .bform .help a{color:var(--ink);font-weight:500}
 .bform .grid{clear:both;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;align-items:end}
@@ -394,7 +394,7 @@ ul.good li{margin-bottom:8px}
 .bform textarea{resize:vertical}
 .bform .wide{margin-top:14px}
 .bform .riders{clear:both;display:flex;flex-direction:column;gap:12px}
-.bform .rider{display:grid;grid-template-columns:1.1fr .6fr 1fr 1fr 1.6fr auto;gap:10px;align-items:end;background:#fff;border-radius:12px;padding:14px}
+.bform .rider{display:grid;grid-template-columns:1fr .5fr 1fr 1fr 1.9fr auto;gap:10px;align-items:end;background:#fff;border-radius:12px;padding:14px}
 .bform .rider-n{grid-column:1/-1;margin:0;font-weight:700;color:var(--ink)}
 .bform .remove{align-self:end;background:none;border:0;color:var(--mid);font:600 14px var(--f-body);padding:12px 4px;cursor:pointer;text-decoration:underline}
 .bform .add-rider{margin-top:12px}
@@ -404,6 +404,7 @@ ul.good li{margin-bottom:8px}
 .bform .terms label.tick{margin:0 0 14px}
 .bform .staying-need{display:none}
 .bform.needs-staying .staying-need{display:inline}
+.bform [hidden]{display:none}   /* .btn sets display, which would otherwise beat the hidden attribute */
 .bform .hp{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 .bform .send{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
 .bform .send small{color:var(--muted);font-size:14px}
@@ -412,6 +413,31 @@ ul.good li{margin-bottom:8px}
 .bform.local-file .local{display:block}
 .js .bform .days-box{display:none}
 .js .bform.multi-day .days-box{display:flex}
+
+/* bike finder (which-bike.html); without JavaScript the form is hidden and a note points to the bikes */
+.finder{max-width:860px;margin:30px 0 0;display:flex;flex-direction:column;gap:18px}
+html:not(.js) .finder{display:none}
+.finder legend{line-height:1.25}
+.opts{clear:both;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:10px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opts label{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #cfd7df;border-radius:10px;padding:12px 14px;font-weight:500;font-size:16px;line-height:1.35;cursor:pointer}
+.opts label:hover{border-color:var(--mist)}
+.opts label:has(:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.opts input{width:20px;height:20px;margin:0;flex:none;accent-color:var(--ink)}
+.fb-out{max-width:860px;margin:40px 0 0}
+.fb-out h2:focus{outline:none}
+.textpage .fb-out h2{font-size:28px;margin:0 0 14px}
+.fb-list{display:grid;gap:14px}
+.fb-card{display:grid;grid-template-columns:240px 1fr;gap:22px;align-items:center;background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:14px}
+.fb-card[hidden]{display:none}
+.fb-card:first-child{border:2px solid var(--acc)}
+.fb-card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px}
+.fb-rank{margin:0 0 4px;font-size:14.5px;font-weight:600;color:var(--mid)}
+.fb-card p:not(.fb-rank){margin:6px 0 0;color:var(--muted)}
+.fb-card .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.fb-note{max-width:860px;margin:16px 0 0;background:var(--pale);border-radius:10px;padding:12px 16px}
+.fb-note a,.fb-help a{color:var(--ink);font-weight:600}
+.fb-help{max-width:860px;margin:30px 0 0;font-size:18px;font-weight:500;color:var(--ink)}
 
 /* ---------- text pages: hire terms, privacy, thanks, 404 ---------- */
 .textpage main{padding-bottom:72px}
@@ -478,7 +504,10 @@ footer .stay{margin:26px 0 0;font-size:14px;color:#b9c6d2;border-top:1px solid r
  #map{height:360px}
 }
 @media (max-width:620px){
- .bform fieldset{padding:18px 16px}
+ .bform fieldset,.finder fieldset{padding:18px 16px}
+ .opts.two,.fb-card{grid-template-columns:1fr}
+ .fb-card{gap:12px}
+ .fb-card img{aspect-ratio:16/9}
  .bform .rider{grid-template-columns:1fr 1fr}
  .bform .rider .rider-bike{grid-column:1/-1}
  .bform .rider .remove{grid-column:1/-1;justify-self:start;padding:0}
