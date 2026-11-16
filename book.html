@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request a Booking | Llanberis Bike Hire</title>
+<meta name="description" content="Ask for bikes online. Tell us the day, who&#x27;s riding and where you&#x27;d like to go, and Nigel will confirm with a link to pay.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://www.llanberisbikehire.co.uk/book.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_GB">
+<meta property="og:site_name" content="Llanberis Bike Hire">
+<meta property="og:title" content="Request a Booking | Llanberis Bike Hire">
+<meta property="og:description" content="Ask for bikes online. Tell us the day, who&#x27;s riding and where you&#x27;d like to go, and Nigel will confirm with a link to pay.">
+<meta property="og:url" content="https://www.llanberisbikehire.co.uk/book.html">
+<meta property="og:image" content="https://www.llanberisbikehire.co.uk/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#14304E">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preload" href="fonts/rubik.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="css/site.css?v=254fddff">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body class="textpage bookpage">
+<a class="skip" href="#main">Skip to the content</a>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html"><img src="img/logo-badge.png" width="58" height="58" alt=""><span class="brand-t"><b>Llanberis Bike Hire</b><i lang="cy">Llogi beiciau</i></span></a>
+<nav class="main" id="nav" aria-label="Main"><a href="index.html#bikes">Bikes and prices</a><a href="index.html#ways">How to book</a><a href="index.html#routes">Routes</a><a href="index.html#photos">Photos</a><a href="index.html#about">About</a><a href="index.html#find">Find us</a></nav>
+<a class="tel" href="tel:+447776051559"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l1.5 4.5-2.3 1.5a11 11 0 0 0 5.8 5.8l1.5-2.3L20 14v4a2 2 0 0 1-2 2A15 15 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg></span> 07776 051559</a>
+<a class="btn acc small" href="index.html#ways">Book a bike</a>
+<button class="menu" type="button" aria-label="Menu" aria-controls="nav" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></header>
+<main id="main" class="wrap">
+<p class="crumbs"><a href="index.html">Home</a> › Request a booking</p>
+<div class="doc">
+<h1>Request a booking</h1><p class="cy" lang="cy">Gofyn am archeb</p>
+<p class="lede">Tell us the day, who's riding and where you'd like to go. Nigel checks every request himself and emails you back with a link to pay by card. There's nothing to pay until then.</p>
+<p class="steps"><span>1. Send your request</span><span>2. Nigel confirms</span><span>3. Pay by card to book</span></p>
+</div>
+
+<form class="bform" action="book.php" method="post">
+
+ <fieldset>
+  <legend>When</legend>
+  <div class="grid">
+   <label>Which day?<input type="date" name="date" required></label>
+   <label>How long?<select name="length" required>
+    <option value="3h">Up to 3 hours</option>
+    <option value="day" selected>Full day</option>
+    <option value="days">Two days or more</option>
+   </select></label>
+   <label class="days-box">How many days?<input type="number" name="days" min="2" max="14" value="2" inputmode="numeric"></label>
+   <label>Collecting at about<select name="time">
+    <option value="10:00">10am</option>
+    <option value="11:00">11am</option>
+    <option value="12:00">12 noon</option>
+    <option value="13:00">1pm</option>
+    <option value="14:00">2pm</option>
+    <option value="" selected>Not sure yet</option>
+   </select></label>
+  </div>
+ </fieldset>
+
+ <fieldset>
+  <legend>Who's riding</legend>
+  <p class="help">One line for each rider, so Nigel can have the right size of bike set up and ready. Not sure which bike? Pick "Not sure" and he'll help. More than 20 of you? Give him a call.</p>
+  <div class="riders">
+   <div class="rider">
+    <p class="rider-n">Rider 1</p>
+    <label>First name <small>Optional</small><input type="text" name="riders[0][name]" maxlength="40" autocomplete="off"></label>
+    <label>Age <small>If under 16</small><input type="number" name="riders[0][age]" min="0" max="15" inputmode="numeric"></label>
+    <label>Height<input type="text" name="riders[0][height]" maxlength="20" placeholder="e.g. 5ft 8 or 173cm" required></label>
+    <label>Weight <small>Optional, for e-bikes</small><input type="text" name="riders[0][weight]" maxlength="20" placeholder="e.g. 11st or 70kg"></label>
+    <label class="rider-bike">Bike<select name="riders[0][bike]" required>
+     <option value="">Choose a bike</option>
+     <option value="hardtail">Hardtail mountain bike</option>
+     <option value="fullsus">Full-suspension mountain bike</option>
+     <option value="emtb">Electric mountain bike</option>
+     <option value="stepthrough">Step-through e-bike</option>
+     <option value="road">Road bike</option>
+     <option value="kids">Child's bike</option>
+     <option value="tagalong">Tag-along</option>
+     <option value="trailer">Seat in a child trailer</option>
+     <option value="unsure">Not sure, help me choose</option>
+    </select></label>
+    <button class="remove" type="button" hidden>Remove</button>
+   </div>
+  </div>
+  <button class="btn line small add-rider" type="button" hidden>+ Add another rider</button>
+  <noscript><p class="help">More riders? List them in "Anything else" below, with each one's height and bike.</p></noscript>
+ </fieldset>
+
+ <fieldset>
+  <legend>Your ride</legend>
+  <div class="grid">
+   <label>How much riding have you done?<select name="experience" required>
+    <option value="new">New to it, or not ridden for a while</option>
+    <option value="paths" selected>Happy on cycle paths and gentle tracks</option>
+    <option value="offroad">Confident off-road</option>
+    <option value="expert">Experienced mountain bikers</option>
+    <option value="mixed">A mix (tell us below)</option>
+   </select></label>
+   <label>Where would you like to ride?<select name="route">
+    <option value="">Not sure, suggest one</option>
+    <option value="route-a">A: Clegyr Road circular (easy)</option>
+    <option value="route-b">B: Round Llyn Padarn and the quarries (moderate)</option>
+    <option value="route-c">C: Telegraph Pass (challenging)</option>
+    <option value="route-d">D: Yr Wyddfa, Snowdon (challenging)</option>
+    <option value="route-e">E: Lôn Eifion (very easy)</option>
+    <option value="route-f">F: Lôn Las Ogwen (moderate)</option>
+    <option value="road">Road riding</option>
+    <option value="other">Something else (tell us below)</option>
+   </select></label>
+   <label>Who's in the group? <small>Optional</small><select name="group">
+    <option value="">Choose</option>
+    <option>Family</option>
+    <option>Friends</option>
+    <option>Couple</option>
+    <option>Stag or hen</option>
+    <option>Club, school or organisation</option>
+    <option>Work group</option>
+    <option>Something else</option>
+   </select></label>
+  </div>
+  <p class="help">Have a look at <a href="index.html#routes">our routes</a>. Nigel will make sure the one you pick suits everyone in your group.</p>
+ </fieldset>
+
+ <fieldset>
+  <legend>Collecting your bikes</legend>
+  <div class="radios">
+   <label><input type="radio" name="collect" value="yard" checked> Collect from our yard, behind 34 High Street</label>
+   <label><input type="radio" name="collect" value="deliver"> Deliver to where we're staying <small>(Nigel will quote)</small></label>
+   <label><input type="radio" name="collect" value="dropoff"> Drop us off or pick us up for a one-way ride <small>(Nigel will quote)</small></label>
+  </div>
+  <label class="staying">Where are you staying? <small class="staying-need">Needed for delivery</small><input type="text" name="staying" maxlength="200" placeholder="e.g. the campsite or cottage, and the village"></label>
+ </fieldset>
+
+ <fieldset>
+  <legend>Your details</legend>
+  <div class="grid">
+   <label>Your name<input type="text" name="name" autocomplete="name" required maxlength="100"></label>
+   <label>Email <small>For your confirmation and pay link</small><input type="email" name="email" autocomplete="email" required maxlength="150"></label>
+   <label>Mobile <small>In case Nigel needs to reach you</small><input type="tel" name="mobile" autocomplete="tel" required maxlength="30"></label>
+  </div>
+  <label class="wide">Anything else? <small>Optional</small><textarea name="notes" rows="3" maxlength="3000"></textarea></label>
+ </fieldset>
+
+ <fieldset class="terms">
+  <legend>Our hire terms</legend>
+  <p class="help">Please read our <a href="hire-terms.html" target="_blank">hire terms</a>. They're short and in plain English. When you collect, Nigel will go through the hire agreement with you.</p>
+  <label class="tick"><input type="checkbox" name="terms" value="yes" required> I've read the hire terms and agree to them for everyone in my group</label>
+  <label>Type your full name as your signature<input type="text" name="terms_name" maxlength="100" required autocomplete="name"></label>
+ </fieldset>
+
+ <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+ <div class="send"><button class="btn acc" type="submit">Send my request</button><small>Nothing to pay yet. We only use your details to arrange your hire. <a href="privacy.html">Privacy notice</a></small></div>
+ <p class="local">Online requests start working when the new website goes live. Until then, call or text 07776 051559, or email llanberisbikehire@gmail.com.</p>
+</form>
+</main>
+<footer><div class="wrap">
+ <div class="cols">
+  <div><a class="fbrand" href="index.html"><img src="img/logo-badge-dark.png" width="60" height="60" alt="" loading="lazy"><span><b>Llanberis Bike Hire</b><i lang="cy">Llogi beiciau</i></span></a><p>Bike hire at the foot of Snowdon, from Llanberis High Street.</p><p class="cy" lang="cy">Llogi beiciau wrth droed yr Wyddfa.</p></div>
+  <div><h2>Visit</h2><p>The yard behind Rumdoodles<br>34 High Street, Llanberis<br>Gwynedd LL55 4EU</p><p>Open every day, 10am to 5pm</p></div>
+  <div><h2>Contact</h2><p><a href="tel:+447776051559">07776 051559</a> (call or text)</p><p><a href="mailto:llanberisbikehire@gmail.com">llanberisbikehire@gmail.com</a></p><p><a href="https://www.instagram.com/llanberisbikehire/">Instagram</a></p></div>
+  <div><h2>Good to know</h2><p><a href="index.html#bikes">Prices and deposits</a></p><p><a href="route-d.html">Cycling on Snowdon</a></p><p><a href="hire-terms.html">Hire terms</a></p><p><a href="privacy.html">Privacy notice</a></p><p><a href="https://www.google.com/maps/place/Llanberis+Bike+Hire/data=!4m3!3m2!1s0x48650823bc80775d:0x7b9122bcc767b26!12e1">Leave us a Google review</a></p></div>
+  <div><h2>Plan your trip</h2><p><a href="https://www.adventuresmart.co.uk/">AdventureSmart</a></p><p><a href="https://www.mbwales.com/">Mountain Bike Wales</a></p><p><a href="https://www.visitsnowdonia.info/gwynedd-recreational-routes">Gwynedd cycle paths</a></p><p><a href="https://www.walkwheelcycletrust.org.uk/find-a-route-on-the-national-cycle-network/">National Cycle Network</a></p></div>
+ </div>
+ <p class="stay"><b>Places to stay nearby:</b> <a href="https://www.theroyalvictoria.co.uk/">The Royal Victoria Hotel</a> · <a href="https://www.bryntyrchinn.co.uk/">Bryn Tyrch Inn</a> · <a href="https://northwalesresorts.co.uk/parks/ogwenbank/">Ogwen Bank</a> · <a href="https://www.menaiholidays.co.uk/anglesey-holiday-cottages.html">Menai Holidays</a> · <a href="https://www.hottubhideaways.com/lodges/wales/">Hot Tub Hideaways</a></p>
+ <div class="credits">
+  <p>Llanberis Bike Hire Limited, company number 07231295. Registered office: 53 High Street, Llanberis, Caernarfon LL55 4EU.</p>
+  <p>Photos of our riders, the trailer and the trails are our own. Other photos: <a href="https://commons.wikimedia.org/wiki/File:The_Lonely_Tree,_Llyn_Padarn,_Llanberis_-_geograph.org.uk_-_8219702.jpg">The Lonely Tree, Llyn Padarn</a> by I Love Colour (<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a>); <a href="https://commons.wikimedia.org/wiki/File:A_World_heritage_Site_in_Wales_-_Chwarel_Llanberis_Quarry_(sometimes_%27Dinorwic_Quarry%27);_Awyrlun_Mehefin_2023_-_aerial_view_June_2023_08.jpg">Dinorwig quarry from the air</a> by Llywelyn2000 (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>); the rest from Unsplash. Maps © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors.</p>
+ </div>
+</div></footer>
+<div class="mbook"><a class="btn acc" href="index.html#ways">Book a bike</a><a class="btn call" href="tel:+447776051559" aria-label="Call us on 07776 051559"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l1.5 4.5-2.3 1.5a11 11 0 0 0 5.8 5.8l1.5-2.3L20 14v4a2 2 0 0 1-2 2A15 15 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg></span></a></div>
+<script src="js/site.js?v=254fddff" defer></script>
+</body>
+</html>
