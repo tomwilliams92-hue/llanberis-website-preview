@@ -98,6 +98,9 @@ if (bform) {
     firstBike.value = picked;
     heightRule(first);
   }
+  // and the height chosen on the e-bike page's size finder (book.html?bike=emtb&height=...)
+  const height = new URLSearchParams(location.search).get('height');
+  if (height) first.querySelector('input[name$="[height]"]').value = height.slice(0, 20);
   list.addEventListener('click', e => {
     if (e.target.matches('.remove')) { e.target.closest('.rider').remove(); renumber(); }
   });
@@ -165,4 +168,54 @@ if (finder) {
     show();
     out.querySelector('h2').focus();
   });
+}
+
+// E-bike page: tap a dot on the photo, or a part in the list, to see what it does. The dots pop in once on screen.
+const tour = document.querySelector('.tour');
+if (tour) {
+  const parts = [...tour.querySelectorAll('.parts button')], dots = [...tour.querySelectorAll('.dot')];
+  const pick = i => {
+    parts.forEach((b, k) => { b.setAttribute('aria-expanded', k === i); b.nextElementSibling.hidden = k !== i; });
+    dots.forEach((d, k) => d.classList.toggle('on', k === i));
+  };
+  parts.forEach((b, i) => b.addEventListener('click', () => pick(i)));
+  dots.forEach((d, i) => d.addEventListener('click', () => pick(i)));
+  pick(0);
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) {
+        tour.classList.add('seen');
+        setTimeout(() => tour.classList.add('ready'), 1000);  // after the pop-in, hovering a dot reacts straight away
+        io.disconnect();
+      }
+    }), {threshold: 0.4});
+    io.observe(tour.querySelector('.tour-img'));
+  } else tour.classList.add('seen');
+}
+
+// E-bike page: slide to your height to see which frame fits, with the rider drawn to scale beside the bike.
+// Heights from Carrera's size charts (Halfords, checked 19.11.2026): women's 14in S 150-163 cm, 16in M 160-170;
+// men's 18in M 168-178, 20in L 175-185. Nigel has up to 2 small, 3 medium and 3 large (email 18.11.2026).
+const fit = document.querySelector('.fit');
+if (fit) {
+  const SIZES = [['S', 'small', 150, 163, 2], ['M', 'medium', 160, 178, 3], ['L', 'large', 175, 185, 3]];
+  const range = fit.querySelector('input'), out = fit.querySelector('output'), msg = fit.querySelector('.fit-msg');
+  const person = fit.querySelector('.fit-person'), book = fit.querySelector('.fit-book');
+  const ring = '<a href="tel:+447776051559">07776 051559</a>';
+  const ftin = cm => { const i = Math.round(cm / 2.54); return `${Math.floor(i / 12)}ft` + (i % 12 ? ` ${i % 12}in` : ''); };
+  const show = () => {
+    const cm = +range.value, fits = SIZES.filter(s => cm >= s[2] && cm <= s[3]);
+    out.textContent = `${ftin(cm)} · ${cm} cm`;
+    range.setAttribute('aria-valuetext', out.textContent);
+    person.style.transform = `scale(${cm / 100})`;
+    fit.querySelectorAll('.sizes li').forEach(li => li.classList.toggle('on', fits.some(s => s[0] === li.dataset.size)));
+    msg.innerHTML = fits.length === 1 ? `A <b>${fits[0][1]}</b> should fit you. We have up to ${fits[0][4]}.`
+      : fits.length ? `A <b>${fits[0][1]} or ${fits[1][1]}</b> should both fit you. Nigel will help you choose.`
+      : cm < 150 ? `Our smallest e-bike is made for riders from 4ft 11in (150 cm), so give Nigel a ring on ${ring} and he'll suggest one that fits.`
+      : `Our large e-bike is made for riders up to 6ft 1in (185 cm), so give Nigel a ring on ${ring} to check the fit.`;
+    book.hidden = !fits.length;
+    book.href = 'book.html?bike=emtb&height=' + encodeURIComponent(`${cm}cm (${ftin(cm).replace('in', '')})`);
+  };
+  range.addEventListener('input', show);
+  show();
 }

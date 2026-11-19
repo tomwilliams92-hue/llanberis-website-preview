@@ -22,7 +22,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="preload" href="fonts/rubik.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="css/site.css?v=5ed362f0">
+<link rel="stylesheet" href="css/site.css?v=4cc3152e">
 <script>document.documentElement.classList.add('js')</script>
 </head>
 <body class="bikepage">
@@ -65,6 +65,59 @@
     </ul>
   </div>
 </div>
+
+<section class="extra tour" aria-labelledby="tour-h">
+ <div class="extra-head"><h2 id="tour-h">Get to know your e-bike</h2><p class="lede">New to e-bikes? Tap a dot to see what each part does.</p></div>
+ <div class="extra-in">
+  <div class="tour-pic"><div class="tour-img">
+   <img width="2000" height="1152" srcset="img/vengeance-e-cut-900.jpg 900w, img/vengeance-e-cut-1400.jpg 1400w, img/vengeance-e-cut.jpg 2000w" sizes="(max-width: 980px) 100vw, 680px" src="img/vengeance-e-cut.jpg" alt="The Carrera Vengeance E side on, with its main parts numbered 1 to 6" loading="lazy">
+   <!-- dots placed on the maker's photo (2000 x 1152 px), as a percentage across and down -->
+   <span class="dot" style="left:67%;top:4%;--d:0s" aria-hidden="true">1</span>
+   <span class="dot" style="left:50%;top:48.6%;--d:.08s" aria-hidden="true">2</span>
+   <span class="dot" style="left:19.8%;top:66.4%;--d:.16s" aria-hidden="true">3</span>
+   <span class="dot" style="left:82.5%;top:64.7%;--d:.24s" aria-hidden="true">4</span>
+   <span class="dot" style="left:72.8%;top:38.2%;--d:.32s" aria-hidden="true">5</span>
+   <span class="dot" style="left:31.8%;top:11.1%;--d:.4s" aria-hidden="true">6</span>
+  </div></div>
+  <ol class="parts">
+   <li><button type="button" aria-expanded="true" aria-controls="part-1"><span class="n">1</span>Display and controls</button><p id="part-1">The display on the left of the handlebar switches the motor on and sets how much help you get. Start on a low setting and the battery lasts longer. The gear lever is on the right.</p></li>
+   <li><button type="button" aria-expanded="true" aria-controls="part-2"><span class="n">2</span>Battery</button><p id="part-2">Clips onto the frame and comes off to charge. A full charge is good for about 20 to 30 miles, depending on the hills and how much help you use.</p></li>
+   <li><button type="button" aria-expanded="true" aria-controls="part-3"><span class="n">3</span>Motor</button><p id="part-3">Sits in the back wheel. It only helps while you're pedalling, and eases off at 15.5 mph, the UK limit for e-bikes.</p></li>
+   <li><button type="button" aria-expanded="true" aria-controls="part-4"><span class="n">4</span>Brakes</button><p id="part-4">Disc brakes front and back, which work well in the wet. Use both levers together, gently. Nigel will show you which lever is which before you set off.</p></li>
+   <li><button type="button" aria-expanded="true" aria-controls="part-5"><span class="n">5</span>Front suspension</button><p id="part-5">100 mm of travel in the fork takes the edge off rocks, roots and bumpy tracks.</p></li>
+   <li><button type="button" aria-expanded="true" aria-controls="part-6"><span class="n">6</span>Saddle</button><p id="part-6">Nigel sets the height for each rider. With a pedal at the bottom, your leg should be almost straight.</p></li>
+  </ol>
+ </div>
+</section>
+
+<section class="extra fit" aria-labelledby="fit-h">
+ <div class="extra-head"><h2 id="fit-h">Which size am I?</h2><p class="lede">Slide to your height to see which frame fits you, with you drawn to scale beside the bike.</p></div>
+ <div class="extra-in">
+  <!-- drawn in centimetres: the bike photo is 183.5 cm long at the real size of its 27.5in wheels, and the rider is 100 units tall, scaled to the height chosen -->
+  <svg class="fit-stage" viewBox="0 0 250 213" role="img" aria-label="A rider drawn to scale standing beside the bike">
+   <image href="img/vengeance-e-cut-1400.jpg" x="62" y="104.9" width="183.5" height="105.7"/>
+   <!-- the rider: 100 units from the top of the head (y 110.4) to the feet (y 210), the right half drawn and mirrored -->
+   <g class="fit-person" fill="#2E5E8C"><ellipse cx="32" cy="116.3" rx="4.6" ry="5.9"/>
+    <path id="fit-half" d="M31.8 121H33.6L33.8 124.5C37 124.8 40 125 41.8 126.4C43.4 127.6 43.8 129.5 43.9 131.5L44.7 156.5C44.8 159.6 41.8 159.9 41.7 157L41.1 135C40.6 135 40.4 135.2 40.2 136C39.6 141 38.7 146 38.9 150C39.2 154 40.3 157 40.3 161L39.3 205.6C39.9 207.7 40.3 210 38.6 210H34C33.4 210 33.1 209.6 33.1 209L32.6 167C32.55 166 32.3 165.6 31.8 165.6Z"/>
+    <use href="#fit-half" transform="matrix(-1 0 0 1 64 0)"/></g>
+   <line x1="3" y1="210.4" x2="247" y2="210.4" stroke="#cfd7df" stroke-width=".8"/>
+  </svg>
+  <div class="fit-ctl">
+   <label class="js-only" for="fit-height">Your height</label>
+   <output class="js-only" for="fit-height">5ft 7in · 170 cm</output>
+   <input class="js-only" type="range" id="fit-height" min="140" max="200" step="1" value="170">
+   <ul class="sizes">
+    <li data-size="S"><b>Small</b>4ft 11 to 5ft 4</li>
+    <li data-size="M"><b>Medium</b>5ft 3 to 5ft 10</li>
+    <li data-size="L"><b>Large</b>5ft 9 to 6ft 1</li>
+   </ul>
+   <p class="fit-msg js-only" aria-live="polite"></p>
+   <a class="btn acc small fit-book js-only" href="book.html?bike=emtb">Request this bike</a>
+   <p class="fit-note">Heights from Carrera's own size charts. Nigel checks the fit and sets your saddle when you collect.</p>
+  </div>
+ </div>
+</section>
+
 <section class="others" aria-label="Our other bikes"><h2>Our other bikes</h2><div class="row"><a class="other" href="bike-hardtail.html"><img width="480" height="320" src="img/bike-hardtail-480.jpg" alt="" loading="lazy"><div><b>Hardtail</b><span>See this bike</span></div></a><a class="other" href="bike-full-suspension.html"><img width="480" height="320" src="img/bike-fullsus-480.jpg" alt="" loading="lazy"><div><b>Full-suspension e-bike</b><span>See this bike</span></div></a></div></section>
 </main>
 <footer><div class="wrap">
@@ -82,6 +135,6 @@
  </div>
 </div></footer>
 <div class="mbook"><a class="btn acc" href="index.html#ways">Book a bike</a><a class="btn call" href="tel:+447776051559" aria-label="Call us on 07776 051559"><span class="ic"><svg viewBox="0 0 24 24"><path d="M5 3h4l1.5 4.5-2.3 1.5a11 11 0 0 0 5.8 5.8l1.5-2.3L20 14v4a2 2 0 0 1-2 2A15 15 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg></span></a></div>
-<script src="js/site.js?v=5ed362f0" defer></script>
+<script src="js/site.js?v=4cc3152e" defer></script>
 </body>
 </html>
