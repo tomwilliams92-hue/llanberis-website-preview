@@ -141,6 +141,7 @@ svg.gword{height:18px;width:auto;flex:none;display:inline-block;vertical-align:m
 .way p{margin:0;color:var(--muted);font-size:16px;flex:1}
 .way .acts{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:8px}
 .way .acts a:not(.btn){font-weight:600;color:var(--ink);font-size:15px}
+@supports (grid-template-rows:subgrid){.way{display:grid;grid-row:span 4;grid-template-rows:subgrid;row-gap:10px;align-content:start}.way .acts{align-self:start}}
 
 /* families and groups */
 .groups{padding:96px 0}
