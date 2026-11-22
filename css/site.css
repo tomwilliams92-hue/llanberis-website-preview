@@ -354,7 +354,7 @@ a.line:hover span:last-child{text-decoration:underline}
 /* ---------- route pages ---------- */
 .rhero{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:21/8;margin:18px 0 0;background:var(--pale)}
 .rhero img{width:100%;height:100%;object-fit:cover}
-.rhero .in{position:absolute;left:0;right:0;bottom:0;padding:24px 28px;background:linear-gradient(0deg,rgba(20,48,78,.92),rgba(20,48,78,0))}
+.rhero .in{position:absolute;left:0;right:0;bottom:0;padding:56px 28px 24px;background:linear-gradient(0deg,rgba(20,48,78,.92) 0%,rgba(20,48,78,.8) 50%,rgba(20,48,78,0) 100%)}
 .rhero .k{display:inline-flex;width:34px;height:34px;border-radius:50%;background:#fff;color:var(--ink);font-weight:600;align-items:center;justify-content:center;margin-right:10px;flex:none;font-size:20px}
 .rhero h1{color:#fff;display:flex;align-items:center;font-size:36px;font-weight:600;line-height:1.15}
 .facts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0 0}
@@ -552,7 +552,7 @@ footer .stay{margin:24px 0 0;font-size:14px;color:#b9c6d2;border-top:1px solid r
  .bikepage h1{font-size:30px}
  .specs{grid-template-columns:1fr}
  .rhero h1{font-size:24px}
- .rhero .in{padding:16px 18px}
+ .rhero .in{padding:40px 18px 16px}
  .facts b{font-size:19px}
  .other img{width:96px;height:68px}
 }
@@ -566,7 +566,7 @@ footer .stay{margin:24px 0 0;font-size:14px;color:#b9c6d2;border-top:1px solid r
 .tour-pic{background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px 24px}
 .tour-img{position:relative}
 .dot{position:absolute;width:30px;height:30px;margin:-15px 0 0 -15px;border-radius:50%;background:var(--ink);color:#fff;font:600 14px/30px var(--f-body);text-align:center;cursor:pointer;user-select:none;
-  box-shadow:0 0 0 3px #fff,0 4px 12px rgba(20,48,78,.35);transition:transform .35s var(--ease) var(--d,0s),background .2s,color .2s}
+  box-shadow:0 0 0 3px #fff,0 4px 12px rgba(0,0,0,.28);transition:transform .35s var(--ease) var(--d,0s),background .2s,color .2s}
 .dot:hover{transform:scale(1.12)}
 .dot.on{background:var(--acc);color:var(--acc-ink);transform:scale(1.15)}
 .js .tour:not(.seen) .dot{transform:scale(0)}
