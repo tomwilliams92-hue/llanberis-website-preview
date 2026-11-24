@@ -123,8 +123,8 @@ if (bform) {
 }
 
 // Bike finder (which-bike.html): one or two bikes for the answers, best first. qa.py checks every set of answers.
-// Nigel's fleet (email 18.11.2026): hardtails, hardtail e-bikes, road bikes, ONE full-suspension e-bike kept for
-// Snowdon, children's bikes, trailers and tag-alongs.
+// Nigel's fleet (email 18.11.2026, updated 24.11.2026): hardtails, hardtail e-bikes, road bikes, THREE full-suspension
+// e-bikes kept for Snowdon (Giant Trance L, Cube Stereo S, Cube 155 SLX L), children's bikes, trailers and tag-alongs.
 function suggestBikes(who, where, rider, help) {
   if (who === 'child') return ['kids'];
   if (who === 'little') return ['trailer', 'tagalong'];
