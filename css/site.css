@@ -318,6 +318,7 @@ a.line:hover span:last-child{text-decoration:underline}
 .bikepage .mainph{position:relative;margin:0;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:var(--pale)}
 .bikepage .mainph img{width:100%;height:100%;object-fit:cover}
 .thumbs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+.thumbs.six{grid-template-columns:repeat(3,1fr)}
 .thumbs button{padding:0;border:2.5px solid transparent;border-radius:10px;overflow:hidden;cursor:pointer;aspect-ratio:4/3;background:var(--pale)}
 .thumbs button[aria-pressed="true"]{border-color:var(--acc)}
 .thumbs img{width:100%;height:100%;object-fit:cover}
