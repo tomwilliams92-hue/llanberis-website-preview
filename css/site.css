@@ -467,9 +467,8 @@ footer .fbrand{display:inline-flex;align-items:center;gap:12px;text-decoration:n
 footer .fbrand img{width:60px;height:60px}
 footer .fbrand b{display:block;font:600 19px/1.1 var(--f-head);color:#fff}
 footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal;color:var(--acc)}
-footer .stay{margin:24px 0 0;font-size:14px;color:#b9c6d2;border-top:1px solid rgba(255,255,255,.12);padding-top:16px}
-.credits{border-top:1px solid rgba(255,255,255,.14);margin-top:24px;padding-top:18px;font-size:12.5px;color:#a9b8c6}
-.credits p{margin:0 0 6px}
+.credits{border-top:1px solid rgba(255,255,255,.14);margin-top:32px;padding-top:20px;font-size:12.5px;color:#a9b8c6;display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
+.credits p{margin:0}
 .credits a{color:#c4d0db}
 
 /* ---------- smaller screens ---------- */
@@ -606,3 +605,42 @@ html:not(.js) .js-only{display:none}
  /* links inside lines of text: taller tap area, same layout */
  .crumbs a,.stay a,.credits a,.nearby a,.way .acts a:not(.btn),.item .t a,.rv-sum+a,.contact p a{display:inline-block;padding:10px 0;margin:-10px 0}
 }
+
+/* places to stay */
+.staylist{list-style:none;margin:24px 0 40px;padding:0;border-top:1px solid var(--line,#dde3e8)}
+.staylist li{border-bottom:1px solid var(--line,#dde3e8)}
+.staylist a{display:flex;flex-direction:column;gap:4px;padding:16px 0;text-decoration:none;color:inherit}
+.staylist a b{font-size:18px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.staylist a span{color:#566676}
+/* Tomoni site credit badge (brand/site-credit, 27.11.2026). Drop tomoni-credit.html into the footer.
+   Colours follow the footer: dark footers need nothing; on a light footer add class "tmn-light". */
+.tmn{--tmn-ink:#fff;--tmn-sub:rgba(255,255,255,.75);--tmn-line:rgba(255,255,255,.18);--tmn-hover:#B3B0DA;
+  position:relative;display:inline-flex;align-items:center;gap:10px;padding:5px 16px 5px 5px;border:1px solid var(--tmn-line);
+  border-radius:999px;color:var(--tmn-ink);text-decoration:none;overflow:hidden;isolation:isolate;
+  transition:border-color .35s cubic-bezier(.2,.7,.2,1)}
+.tmn.tmn-light{--tmn-ink:#1A1A1A;--tmn-sub:#6A6A6A;--tmn-line:#E2DED8;--tmn-hover:#3D3A7A}
+.tmn-m{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#3D3A7A;color:#fff;flex:none;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.tmn-m svg{width:17px;height:17px;display:block;transform:translateX(1px)}
+.tmn-t{display:flex;flex-direction:column;gap:4px;line-height:1}
+.tmn-t small{font-size:10.5px;letter-spacing:.04em;color:var(--tmn-sub)}
+.tmn-w{height:9px;width:auto;display:block}
+.tmn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 30%,rgba(179,176,218,.22) 50%,transparent 70%);
+  transform:translateX(-110%);transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.tmn:hover,.tmn:focus-visible{border-color:var(--tmn-hover)}
+.tmn:hover::after,.tmn:focus-visible::after{transform:translateX(110%)}
+.tmn:hover .tmn-m,.tmn:focus-visible .tmn-m{transform:rotate(-8deg) scale(1.06)}
+.tmn:focus-visible{outline:2px solid var(--tmn-hover);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.tmn,.tmn-m,.tmn::after{transition:none}.tmn::after{display:none}}
+.credits a.tmn{color:var(--tmn-ink);display:inline-flex;padding:5px 16px 5px 5px;margin:0}
+
+/* bike finder block (27.11.2026) */
+.quizcta{display:flex;align-items:center;gap:20px;margin-top:28px;padding:22px 24px;border:1.5px solid var(--line);border-radius:var(--r);background:#fff;color:var(--text);text-decoration:none;transition:border-color .2s}
+.quizcta:hover{border-color:var(--ink)}
+.quizcta-ic{flex:none;display:grid;place-items:center;width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff}
+.quizcta-ic svg{width:30px;height:30px}
+.quizcta-t{flex:1;display:flex;flex-direction:column;gap:4px}
+.quizcta-t b{font-size:20px}
+.quizcta-t span{color:var(--muted);font-size:16px}
+@media (max-width:620px){.quizcta{flex-wrap:wrap}.quizcta .btn{width:100%;justify-content:center}}
+a.lp-book{text-decoration:none}
