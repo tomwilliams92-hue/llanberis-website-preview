@@ -100,7 +100,13 @@ if (bform) {
   const day = bform.querySelector('input[name=date]');
   dayLimits(day);
   const length = bform.querySelector('select[name=length]');
-  const multi = () => bform.classList.toggle('multi-day', length.value === 'days');
+  // "Two days or more" needs the number of days: an emptied box is caught here, not by the "didn't send" page
+  const daysBox = bform.querySelector('input[name=days]');
+  const multi = () => {
+    const on = length.value === 'days';
+    bform.classList.toggle('multi-day', on);
+    daysBox.required = on;
+  };
   length.addEventListener('change', multi);
   multi();
   const staying = bform.querySelector('input[name=staying]');
