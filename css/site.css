@@ -13,15 +13,17 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:96px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
-body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--paper);color:var(--text);font:400 17px/1.6 var(--f-body);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{flex:1 0 auto;width:100%}   /* short pages (thanks, 404): the footer still sits at the bottom of the screen */
 img{max-width:100%;height:auto;display:block}
 a{color:var(--mid)}
 .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
-h1,h2,h3,h4{font-family:var(--f-head);color:var(--ink);margin:0;letter-spacing:-.01em}
+h1,h2,h3,h4{font-family:var(--f-head);color:var(--ink);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.nb{white-space:nowrap}
 h2{font-weight:600;font-size:clamp(30px,4vw,46px);line-height:1.08}
 h3{font-weight:600;font-size:22px;line-height:1.15;letter-spacing:0}
 p.cy{font:500 18px/1.3 var(--f-head);color:var(--mid);margin:6px 0 0}
-.lede{font-size:19px;color:var(--muted);max-width:640px;margin:14px 0 0}
+.lede{font-size:19px;color:var(--muted);max-width:640px;margin:14px 0 0;text-wrap:pretty}
 section{padding:64px 0}
 .ic{display:inline-flex;width:24px;height:24px;flex:none}
 .ic svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -40,11 +42,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .btn.acc:hover{background:#E3A21F}
 .btn.ink{background:var(--ink);color:#fff}
 .btn.ink:hover{background:#0B2238}
-.btn.line{background:#fff;color:var(--ink);border-color:#cfd7df}
+.btn.line{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--ink);border-color:#cfd7df}
 .btn.line:hover{border-color:var(--mist);background:#F5F8FB}
 .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
 .btn.ghost:hover{background:rgba(255,255,255,.12)}
-.btn.small{padding:11px 18px;font-size:15px}
+.btn.small{padding:12.5px 18px;font-size:15px}
 .btn .ic{width:20px;height:20px}
 
 /* ---------- header ---------- */
@@ -61,7 +63,7 @@ nav.main a{color:var(--text);text-decoration:none;font-weight:500;font-size:16px
 nav.main a:hover{color:var(--mid);text-decoration:underline;text-underline-offset:4px}
 .tel{display:flex;gap:8px;align-items:center;color:var(--ink);font-weight:600;text-decoration:none;white-space:nowrap;flex:none}
 .top .btn{white-space:nowrap;flex:none}
-.menu{display:none;background:none;border:0;padding:8px;margin-left:auto;cursor:pointer;border-radius:8px}
+.menu{display:none;background:none;border:0;padding:8px 10px;min-height:44px;margin-left:auto;cursor:pointer;border-radius:8px}
 .menu span{display:block;width:24px;height:2.5px;background:var(--ink);margin:5px 0;border-radius:2px}
 
 /* ---------- home: hero ---------- */
@@ -156,11 +158,12 @@ svg.gword{height:18px;width:auto;flex:none;display:inline-block;vertical-align:m
 .route-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;margin-top:44px}
 .route{text-decoration:none;position:relative;border-radius:var(--r);overflow:hidden;min-height:340px;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;background:var(--ink)}
 .route img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.route::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,14,22,.88) 0%,rgba(6,14,22,.25) 55%,transparent 80%)}
-.route .in{position:relative;z-index:2;padding:24px}
+.route::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,14,22,.4) 0%,transparent 60%)}
+.route .in{position:relative;z-index:2;padding:72px 24px 24px;background:linear-gradient(0deg,rgba(6,14,22,.9) 0,rgba(6,14,22,.8) calc(100% - 72px),rgba(6,14,22,0) 100%)}
+.route.text .in{padding-top:24px;background:none}
 .route h3{color:#fff;font-size:27px}
 .route p{margin:8px 0 0;color:#e3e9ef;font-size:16px;max-width:520px}
-.badge{position:absolute;z-index:3;top:18px;left:18px;background:var(--acc);color:var(--acc-ink);font:600 13px var(--f-body);border-radius:99px;padding:6px 12px}
+.badge{position:absolute;z-index:3;top:18px;left:18px;background:var(--acc);color:var(--acc-ink);font:600 13.5px var(--f-body);border-radius:99px;padding:6px 12px}
 .route.big{min-height:440px}
 .route.text{background:var(--ink);justify-content:flex-start}
 .route.text::after{display:none}
@@ -234,10 +237,11 @@ svg.gword{height:18px;width:auto;flex:none;display:inline-block;vertical-align:m
 .rv-top{display:grid;grid-template-columns:40px 1fr 22px;gap:12px;align-items:center}
 .rv-top .av{width:40px;height:40px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:600;font-size:18px}
 .rv-top b{display:block;color:var(--ink);font-size:15.5px;line-height:1.2;font-weight:600}
-.rv-top small{display:block;color:var(--muted);font-size:13px}
+.rv-top small{display:block;color:var(--muted);font-size:13.5px}
 .rv blockquote{margin:0;font-size:15.5px;line-height:1.55;color:var(--text)}
 .rv-arr{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;border-radius:50%;background:#fff;border:1px solid #dfe4e9;box-shadow:0 6px 18px rgba(20,32,44,.14);font-size:26px;line-height:1;color:var(--ink);cursor:pointer;padding:0 0 3px}
 .rv-arr.prev{left:-21px}.rv-arr.next{right:-21px}
+.rv-arr[aria-disabled="true"]{opacity:.4;cursor:default;box-shadow:none}
 .rv-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 .rv-btns .btn .g{width:20px;height:20px}
 .gchip{display:inline-flex;width:28px;height:28px;border-radius:50%;background:#fff;align-items:center;justify-content:center;margin:-6px 2px -6px -10px}
@@ -276,8 +280,9 @@ svg.gword{height:18px;width:auto;flex:none;display:inline-block;vertical-align:m
 .card h2{font-size:32px}
 .card p{margin:0}
 .line{display:flex;gap:12px;align-items:flex-start;color:var(--text);text-decoration:none}
-a.line:hover span:last-child{text-decoration:underline}
+a.line:not(.btn):hover span:last-child{text-decoration:underline}
 .line .ic{color:var(--mid);margin-top:2px}
+.btn.line .ic{margin-top:0}
 .card .btn{align-self:flex-start;margin-top:6px}
 
 /* contact form */
@@ -331,7 +336,7 @@ a.line:hover span:last-child{text-decoration:underline}
 .js .stat:not(.lit) .bar span{width:0!important}
 .bar span::after{content:"";position:absolute;right:0;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--acc);box-shadow:none;opacity:0;transition:opacity .4s .9s}
 .lit .bar span::after{opacity:1}
-.ends{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:5px}
+.ends{display:flex;justify-content:space-between;font-size:13.5px;color:var(--muted);margin-top:5px}
 .specs{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin:0}
 .specs div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
 .specs dt{color:var(--muted);font-size:14.5px}
@@ -360,6 +365,12 @@ a.line:hover span:last-child{text-decoration:underline}
 .suits li{border:1.5px solid var(--mist);border-radius:99px;padding:5px 12px;font-size:14px;color:var(--ink)}
 .rcols{display:grid;grid-template-columns:1.25fr 1fr;gap:40px;margin:24px 0 0;align-items:start}
 #map{height:460px;border-radius:16px;overflow:hidden;background:var(--pale);z-index:1}
+.nomap{margin:0;padding:24px;color:var(--ink)}
+.maphint{display:none;margin:8px 0 0;font-size:14px;color:var(--muted)}
+.rnote{text-wrap:pretty;margin:18px 0 0;max-width:820px;background:#FFF6DF;border:1px solid #EBCB7C;border-radius:12px;padding:14px 18px;color:var(--text)}
+.rnote a{color:var(--ink);font-weight:600;white-space:nowrap}
+.prof svg{width:100%;height:auto;display:block}
+.prof .prof-narrow{display:none}
 .prof{border:1px solid var(--line);border-radius:14px;padding:12px 12px 6px;margin-top:14px}
 .kb{display:flex;height:10px;border-radius:99px;overflow:hidden;margin:16px 0 8px}
 .kk{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13.5px;color:var(--muted)}
@@ -370,7 +381,7 @@ ol.steps li::before{content:counter(s);position:absolute;left:0;top:-2px;width:2
 ul.good{margin:0;padding-left:20px}
 ul.good li{margin-bottom:8px}
 .dl{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 0}
-.mapnote{font-size:13px;color:var(--muted);margin-top:18px}
+.mapnote{font-size:14px;color:var(--muted);margin-top:18px}
 .mapnote a{color:var(--muted)}
 .routepage .others{margin-top:40px}
 
@@ -429,6 +440,9 @@ html:not(.js) .finder{display:none}
 .fb-card img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px}
 .fb-rank{margin:0 0 4px;font-size:14.5px;font-weight:600;color:var(--mid)}
 .fb-card p:not(.fb-rank){margin:6px 0 0;color:var(--muted)}
+.fb-card p.fb-price{color:var(--ink);font-weight:500}
+.fb-price b{font-weight:600;font-size:19px}
+.fb-again-row{margin:22px 0 0}
 .fb-card .acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
 .fb-note{max-width:860px;margin:16px 0 0;background:var(--pale);border-radius:10px;padding:12px 16px}
 .fb-note a,.fb-help a{color:var(--ink);font-weight:600}
@@ -459,7 +473,7 @@ footer .fbrand{display:inline-flex;align-items:center;gap:12px;text-decoration:n
 footer .fbrand img{width:60px;height:60px}
 footer .fbrand b{display:block;font:600 19px/1.1 var(--f-head);color:#fff}
 footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal;color:var(--acc)}
-.credits{border-top:1px solid rgba(255,255,255,.14);margin-top:32px;padding-top:20px;font-size:12.5px;color:#a9b8c6;display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
+.credits{border-top:1px solid rgba(255,255,255,.14);margin-top:32px;padding-top:20px;font-size:13.5px;color:#a9b8c6;display:flex;align-items:center;justify-content:space-between;gap:16px 32px;flex-wrap:wrap}
 .credits p{margin:0}
 .credits a{color:#c4d0db}
 
@@ -471,6 +485,16 @@ footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal
  .menu{display:block;margin-left:0}
  .top.open nav.main{display:flex;position:absolute;top:84px;left:0;right:0;flex-direction:column;background:#fff;padding:12px 24px 20px;gap:14px;border-bottom:1px solid #e7eaee;margin:0}
  .top.open nav.main a{font-size:17px}
+}
+@media (min-width:981px) and (max-width:1180px){
+ .hero-shade{background:linear-gradient(90deg,rgba(8,16,26,.9) 0%,rgba(8,16,26,.76) 52%,rgba(8,16,26,0) 80%),linear-gradient(0deg,rgba(8,16,26,.3),transparent 35%)}
+}
+/* without JavaScript the menu button can't open anything, so the links are simply shown */
+@media (max-width:1180px){
+ html:not(.js) .menu{display:none}
+ html:not(.js) .top .wrap{height:auto;flex-wrap:wrap;padding-top:10px;padding-bottom:10px;row-gap:6px}
+ html:not(.js) nav.main{display:flex;flex-wrap:wrap;gap:4px 18px;order:5;width:100%;margin:0}
+ html:not(.js) nav.main a{padding:8px 0}
 }
 @media (max-width:980px){
  .top .tel,.top .btn{display:none}
@@ -496,6 +520,12 @@ footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal
  .facts{grid-template-columns:repeat(2,1fr)}
  .rhero{aspect-ratio:16/9}
  #map{height:360px}
+ .mbook{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e3e7eb;box-shadow:0 -6px 20px rgba(0,0,0,.08)}
+ .mbook .btn{flex:1}
+ .mbook .call{flex:none;width:52px;padding:0;border:2px solid var(--ink);color:var(--ink);background:#fff}
+ footer{padding-bottom:96px}
+ .bookpage .mbook{display:none}   /* the booking form has its own Send button */
+ .bookpage footer{padding-bottom:28px}
 }
 @media (max-width:620px){
  .bform fieldset,.finder fieldset{padding:18px 16px}
@@ -524,27 +554,27 @@ footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal
  .rv-arr{display:none}
  .groups img{height:220px}
  .route,.route.big{min-height:300px}
+ .route:not(.big):not(.text){min-height:440px}
  .map,.map img{min-height:300px}
  .card{padding:24px}
  footer .cols{grid-template-columns:1fr}
  .cform{grid-template-columns:1fr;padding:20px}
  .gal{grid-auto-rows:150px;gap:10px}
- .gal figcaption{font-size:12.5px;left:8px;bottom:8px;padding:4px 9px}
+ .gal figcaption{font-size:13px;left:8px;bottom:8px;padding:4px 9px}
  .trip{padding:22px 14px}
  .trip text.lab{font-size:21px}
  .trip text.sub{font-size:19px}
  .rv-sum{align-self:stretch;width:100%}
  .gbadge{gap:12px;padding:10px 16px 10px 12px}
- .mbook{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;gap:10px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e3e7eb;box-shadow:0 -6px 20px rgba(0,0,0,.08)}
- .mbook .btn{flex:1}
- .mbook .call{flex:none;width:52px;padding:0;border:2px solid var(--ink);color:var(--ink);background:#fff}
- footer{padding-bottom:96px}
  .bikepage h1{font-size:30px}
  .specs{grid-template-columns:1fr}
  .rhero h1{font-size:24px}
  .rhero .in{padding:40px 18px 16px}
  .facts b{font-size:19px}
  .other img{width:96px;height:68px}
+ .prof .prof-wide{display:none}
+ .prof .prof-narrow{display:block}
+ .prof{padding:10px 8px 4px}
 }
 
 /* ---------- e-bike page: the parts tour and the size finder ---------- */
@@ -572,7 +602,11 @@ footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal
 .fit-person{transform-origin:32px 210px;transform:scale(1.7);transition:transform .35s var(--ease)}
 .fit-ctl label{display:block;font-weight:600;color:var(--ink)}
 .fit-ctl output{display:block;font:600 30px/1.2 var(--f-head);color:var(--ink);margin:2px 0 12px}
-.fit-ctl input[type=range]{width:100%;margin:0;accent-color:var(--ink);cursor:pointer}
+.fit-ctl input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;margin:0;background:transparent;cursor:pointer}
+.fit-ctl input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:var(--pale);border:1px solid #b9c4cf}
+.fit-ctl input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:var(--pale);border:1px solid #b9c4cf}
+.fit-ctl input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;margin-top:-12px;border-radius:50%;background:var(--ink);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)}
+.fit-ctl input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--ink);border:3px solid #fff;box-shadow:0 1px 5px rgba(0,0,0,.4)}
 .sizes{list-style:none;padding:0;margin:18px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 .sizes li{border:1.5px solid var(--line);border-radius:12px;padding:8px 10px;font-size:13.5px;line-height:1.35;color:var(--muted);transition:border-color .2s,background .2s}
 .sizes b{display:block;color:var(--ink);font-weight:600;font-size:15px}
@@ -583,7 +617,7 @@ footer .fbrand i{display:block;font:500 14px/1.3 var(--f-head);font-style:normal
 .fit-note{font-size:13.5px;color:var(--muted);margin:14px 0 0}
 html:not(.js) .js-only{display:none}
 @media (max-width:980px){.extra-in{grid-template-columns:1fr;gap:20px}}
-@media (max-width:620px){.tour-pic{padding:16px 12px}.dot{width:26px;height:26px;margin:-13px 0 0 -13px;font-size:12.5px;line-height:26px}.bikepage main .extra h2{font-size:24px}.sizes li{padding:7px 8px;font-size:12.5px}}
+@media (max-width:620px){.tour-pic{padding:16px 12px}.dot{width:26px;height:26px;margin:-13px 0 0 -13px;font-size:12.5px;line-height:26px}.bikepage main .extra h2{font-size:24px}.sizes li{padding:7px 8px;font-size:13.5px}}
 
 /* ---------- touch: bigger tap areas (unslop pass, 22.11.2026) ---------- */
 /* Map zoom buttons 40px. Leaflet's own sheet loads after this one, hence the longer selector. */
@@ -593,7 +627,12 @@ html:not(.js) .js-only{display:none}
  footer .cols p{margin:0}
  footer .cols p>a{display:inline-block;padding:11px 0}
  /* links inside lines of text: taller tap area, same layout */
- .crumbs a,.stay a,.credits a,.nearby a,.way .acts a:not(.btn),.item .t a,.rv-sum+a,.contact p a{display:inline-block;padding:10px 0;margin:-10px 0}
+ .crumbs a,.stay a,.credits a,.nearby a,.way .acts a:not(.btn),.item .t a,.rv-sum+a,.contact p a,.mapnote a,.fb-help a,.fit-msg a,.rnote a{display:inline-block;padding:10px 0;margin:-10px 0}
+ /* find us: each contact row is a full-height tap */
+ a.line:not(.btn){padding:10px 0;margin:-6px 0}
+ /* route map: one finger scrolls the page, so say how to move the map; roomier choices in the map-type box */
+ .maphint{display:block}
+ .leaflet-container .leaflet-control-layers-expanded label{padding:7px 2px;font-size:15px}
 }
 
 /* places to stay */
